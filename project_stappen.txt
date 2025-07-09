@@ -1,6 +1,6 @@
 Projectstappen voor Synthetische Wisselonderhoud Dataset:
 
-1. Constants.py bestand maken (must-have)
+1. Constants.py bestand maken DONE
    Doel: Configuratie en parameters centraliseren voor eenvoudig beheer
    Doelgroep: Ontwikkelaars die parameters willen aanpassen
    Nut: Maakt het systeem configureerbaar en onderhoudbaar
