@@ -2,12 +2,39 @@ Projectomschrijving:
 Synthetische Dataset Generator voor Wisselonderhoud - Een tool om realistische onderhoudsdata te genereren voor het Nederlandse spoorwegnetwerk.
 
 Project doel, nut en functie:
-Het doel is het creëren van een synthetische dataset die realistische patronen weergeeft van wisselonderhoud in het spoorwegnetwerk. Dit is nuttig voor data scientists, onderzoekers en ontwikkelaars die werken aan onderhoudssystemen maar geen toegang hebben tot echte gevoelige data. De functie is het genereren van consistente, logische onderhoudsrecords die gebruikt kunnen worden voor analyse, machine learning en onderzoek naar onderhoudsoptimalisatie.
+Het doel is het creëren van een synthetische dataset die realistische patronen weergeeft van wisselonderhoud in het spoorwegnetwerk. Dit is nuttig voor data scientists, onderzoekers en ontwikkelaars die werken aan onderhoudssystemen maar geen toegang hebben tot echte gevoelige data. De functie is het genereren van consistente, logische onderhoudsrecords die gebruikt kunnen worden voor analyse, machine learning en onderzoek naar onderhoudsoptimalisatie. De dataset moet verbanden tonen tussen onderhoudsfrequentie en storingsgevoeligheid van verschillende wisseltypen en locaties.
 
 Architectuur/modulestructuur:
 - main.py: Hoofdmodule voor datageneratie
 - constants.py: Configuratieparameters en constanten
-- all_disruptions.csv: Input data met stationsinformatie
+- all_disruptions.csv: Bestaande input data met stationsinformatie (reeds aanwezig)
+
+Dataset kolommen voor onderhoudsdata:
+- maintenance_id: Unieke identifier voor onderhoudsactiviteit
+- station_code: Stationscode (uit all_disruptions.csv)
+- station_name: Stationnaam (uit all_disruptions.csv)
+- switch_id: Unieke wissel identifier
+- switch_type: Type wissel (moet consistent blijven per switch_id)
+- switch_hand: Links/rechts wissel (moet consistent blijven per switch_id)
+- date: Datum van onderhoud
+- time: Tijd van onderhoud
+- duration_minutes: Duur van onderhoud in minuten
+- maintenance_type: Type onderhoud (preventief, correctief, etc.)
+- maintenance_category: Categorie onderhoud
+- work_description: Beschrijving van uitgevoerde werkzaamheden
+- lubrication_applied: Boolean - smering toegepast
+- point_motor_serviced: Boolean - wisselmotor onderhouden
+- blade_condition: Conditie van wisselbladen
+- wear_measurement_mm: Slijtage meting in millimeters
+- technician_count: Aantal technici
+- contractor_company: Onderhoudspartij
+- switch_operation_test: Test resultaat (passed, failed, not tested, partial)
+
+Belangrijke eisen:
+- 1 wissel mag meerdere keren voorkomen in onderhoudsdata
+- switch_type, switch_hand, station_code, station_name moeten consistent blijven per switch_id
+- Ongeveer 10 verbanden maken tussen onderhoudsdata en storingen data
+- Station namen ophalen uit all_disruptions.csv (kolommen rdt_station_names en rdt_station_codes)
 
 Per module:
 1. main.py
@@ -21,6 +48,6 @@ Per module:
    - Afhankelijkheden: Geen
 
 3. all_disruptions.csv
-   - Status: Te implementeren (voorbeeld bestand)
+   - Status: Reeds aanwezig
    - Functionaliteit: Input data met station codes en namen
    - Afhankelijkheden: Geen
