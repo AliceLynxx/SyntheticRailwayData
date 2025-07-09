@@ -6,41 +6,33 @@ Projectstappen voor Synthetische Wisselonderhoud Dataset:
    Nut: Maakt het systeem configureerbaar en onderhoudbaar
    Noodzaak: Basis voor alle verdere functionaliteit
    Bestanden: constants.py aanmaken
-   Acties: Definieer alle parameters, lijsten en configuratie
+   Acties: Definieer alle parameters, lijsten en configuratie voor onderhoudsdata generatie
 
-2. Voorbeeld all_disruptions.csv maken (must-have)
-   Doel: Realistische input data voor stationsnamen en codes
-   Doelgroep: Gebruikers die het systeem willen testen
-   Nut: Biedt realistische Nederlandse stationsnamen
-   Noodzaak: Vereist voor het genereren van realistische data
-   Bestanden: all_disruptions.csv aanmaken
-   Acties: Maak voorbeeld CSV met Nederlandse stations
-
-3. Main.py basis functionaliteit (must-have)
-   Doel: Kern functionaliteit voor het genereren van synthetische data
+2. Main.py basis functionaliteit (must-have)
+   Doel: Kern functionaliteit voor het genereren van synthetische onderhoudsdata
    Doelgroep: Eindgebruikers die onderhoudsdata nodig hebben
-   Nut: Genereert bruikbare synthetische dataset
+   Nut: Genereert bruikbare synthetische dataset met alle vereiste kolommen
    Noodzaak: Hoofdfunctionaliteit van het project
    Bestanden: main.py aanmaken
-   Acties: Implementeer datageneratie logica, CSV inlezen, data export
+   Acties: Implementeer datageneratie logica, CSV inlezen van all_disruptions.csv, data export
 
-4. Consistentie logica voor switch eigenschappen (must-have)
+3. Consistentie logica voor switch eigenschappen (must-have)
    Doel: Zorgen dat wissel eigenschappen consistent blijven per switch_id
    Doelgroep: Data scientists die logische data verwachten
    Nut: Verhoogt realisme en bruikbaarheid van de data
    Noodzaak: Essentieel voor geloofwaardige synthetische data
    Bestanden: main.py uitbreiden
-   Acties: Implementeer switch tracking en consistentie checks
+   Acties: Implementeer switch tracking en consistentie checks voor switch_type, switch_hand, station_code, station_name
 
-5. Verbanden tussen onderhoud en storingen (must-have)
+4. Verbanden tussen onderhoud en storingen (must-have)
    Doel: Realistische patronen creëren tussen onderhoud en storingsgevoeligheid
    Doelgroep: Onderzoekers die patronen willen analyseren
    Nut: Maakt data geschikt voor geavanceerde analyses
    Noodzaak: Verhoogt wetenschappelijke waarde van de dataset
    Bestanden: main.py uitbreiden
-   Acties: Implementeer logica voor onderhoud-storing correlaties
+   Acties: Implementeer ongeveer 10 verbanden tussen onderhoudsdata en storingen data
 
-6. README documentatie (nice-to-have)
+5. README documentatie (nice-to-have)
    Doel: Gebruikers helpen het systeem te begrijpen en gebruiken
    Doelgroep: Alle gebruikers van de repository
    Nut: Verbetert gebruiksvriendelijkheid en adoptie
