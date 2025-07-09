@@ -1,0 +1,10 @@
+# Core dependencies voor SyntheticRailwayData
+pandas>=1.5.0
+tqdm>=4.64.0
+
+# Optionele dependencies
+openpyxl>=3.0.0  # Voor Excel export functionaliteit
+
+# Development dependencies (optioneel)
+pytest>=7.0.0
+pytest-cov>=4.0.0
