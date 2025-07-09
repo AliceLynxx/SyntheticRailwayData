@@ -1,0 +1,26 @@
+Projectomschrijving:
+Synthetische Dataset Generator voor Wisselonderhoud - Een tool om realistische onderhoudsdata te genereren voor het Nederlandse spoorwegnetwerk.
+
+Project doel, nut en functie:
+Het doel is het creëren van een synthetische dataset die realistische patronen weergeeft van wisselonderhoud in het spoorwegnetwerk. Dit is nuttig voor data scientists, onderzoekers en ontwikkelaars die werken aan onderhoudssystemen maar geen toegang hebben tot echte gevoelige data. De functie is het genereren van consistente, logische onderhoudsrecords die gebruikt kunnen worden voor analyse, machine learning en onderzoek naar onderhoudsoptimalisatie.
+
+Architectuur/modulestructuur:
+- main.py: Hoofdmodule voor datageneratie
+- constants.py: Configuratieparameters en constanten
+- all_disruptions.csv: Input data met stationsinformatie
+
+Per module:
+1. main.py
+   - Status: Te implementeren
+   - Functionaliteit: Hoofdlogica voor het genereren van synthetische onderhoudsdata
+   - Afhankelijkheden: constants.py, all_disruptions.csv
+
+2. constants.py
+   - Status: Te implementeren  
+   - Functionaliteit: Configuratie parameters voor datageneratie
+   - Afhankelijkheden: Geen
+
+3. all_disruptions.csv
+   - Status: Te implementeren (voorbeeld bestand)
+   - Functionaliteit: Input data met station codes en namen
+   - Afhankelijkheden: Geen
