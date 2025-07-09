@@ -1,0 +1,49 @@
+Projectstappen voor Synthetische Wisselonderhoud Dataset:
+
+1. Constants.py bestand maken (must-have)
+   Doel: Configuratie en parameters centraliseren voor eenvoudig beheer
+   Doelgroep: Ontwikkelaars die parameters willen aanpassen
+   Nut: Maakt het systeem configureerbaar en onderhoudbaar
+   Noodzaak: Basis voor alle verdere functionaliteit
+   Bestanden: constants.py aanmaken
+   Acties: Definieer alle parameters, lijsten en configuratie
+
+2. Voorbeeld all_disruptions.csv maken (must-have)
+   Doel: Realistische input data voor stationsnamen en codes
+   Doelgroep: Gebruikers die het systeem willen testen
+   Nut: Biedt realistische Nederlandse stationsnamen
+   Noodzaak: Vereist voor het genereren van realistische data
+   Bestanden: all_disruptions.csv aanmaken
+   Acties: Maak voorbeeld CSV met Nederlandse stations
+
+3. Main.py basis functionaliteit (must-have)
+   Doel: Kern functionaliteit voor het genereren van synthetische data
+   Doelgroep: Eindgebruikers die onderhoudsdata nodig hebben
+   Nut: Genereert bruikbare synthetische dataset
+   Noodzaak: Hoofdfunctionaliteit van het project
+   Bestanden: main.py aanmaken
+   Acties: Implementeer datageneratie logica, CSV inlezen, data export
+
+4. Consistentie logica voor switch eigenschappen (must-have)
+   Doel: Zorgen dat wissel eigenschappen consistent blijven per switch_id
+   Doelgroep: Data scientists die logische data verwachten
+   Nut: Verhoogt realisme en bruikbaarheid van de data
+   Noodzaak: Essentieel voor geloofwaardige synthetische data
+   Bestanden: main.py uitbreiden
+   Acties: Implementeer switch tracking en consistentie checks
+
+5. Verbanden tussen onderhoud en storingen (must-have)
+   Doel: Realistische patronen creëren tussen onderhoud en storingsgevoeligheid
+   Doelgroep: Onderzoekers die patronen willen analyseren
+   Nut: Maakt data geschikt voor geavanceerde analyses
+   Noodzaak: Verhoogt wetenschappelijke waarde van de dataset
+   Bestanden: main.py uitbreiden
+   Acties: Implementeer logica voor onderhoud-storing correlaties
+
+6. README documentatie (nice-to-have)
+   Doel: Gebruikers helpen het systeem te begrijpen en gebruiken
+   Doelgroep: Alle gebruikers van de repository
+   Nut: Verbetert gebruiksvriendelijkheid en adoptie
+   Noodzaak: Belangrijk voor open source project
+   Bestanden: README.md aanmaken
+   Acties: Documenteer installatie, gebruik en voorbeelden
