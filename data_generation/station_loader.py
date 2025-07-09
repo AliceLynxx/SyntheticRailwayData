@@ -10,6 +10,7 @@ import logging
 import pandas as pd
 from pathlib import Path
 from typing import List, Dict, Any
+import ast
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +70,14 @@ def _load_from_csv(csv_path: Path) -> List[Dict[str, Any]]:
         # Lees CSV bestand
         df = pd.read_csv(csv_path)
         
+        # Controleer eerst op nieuwe kolomnamen (rdt_station_names en rdt_station_codes)
+        if 'rdt_station_names' in df.columns and 'rdt_station_codes' in df.columns:
+            logger.info("Gevonden rdt_station_names en rdt_station_codes kolommen, uitpakken van lijsten...")
+            return _extract_stations_from_rdt_columns(df)
+        
+        # Fallback naar originele logica voor backward compatibility
+        logger.info("Geen rdt kolommen gevonden, proberen originele kolomnamen...")
+        
         # Controleer of vereiste kolommen aanwezig zijn
         required_columns = ['station_code', 'station_name']
         missing_columns = [col for col in required_columns if col not in df.columns]
@@ -109,6 +118,85 @@ def _load_from_csv(csv_path: Path) -> List[Dict[str, Any]]:
     except Exception as e:
         logger.error(f"Fout bij laden CSV bestand: {e}")
         raise
+
+
+def _extract_stations_from_rdt_columns(df: pd.DataFrame) -> List[Dict[str, Any]]:
+    """
+    Extraheert stationsdata uit rdt_station_names en rdt_station_codes kolommen.
+    
+    Deze kolommen bevatten lijsten van stationsnamen en -codes die uitgepakt
+    moeten worden naar individuele station records.
+    
+    Args:
+        df (pd.DataFrame): DataFrame met rdt_station_names en rdt_station_codes kolommen
+        
+    Returns:
+        List[Dict[str, Any]]: Lijst met unieke stations
+    """
+    stations = []
+    
+    for _, row in df.iterrows():
+        # Haal station namen en codes op
+        station_names = row['rdt_station_names']
+        station_codes = row['rdt_station_codes']
+        
+        # Skip lege waarden
+        if pd.isna(station_names) or pd.isna(station_codes):
+            continue
+        
+        # Parse lijsten (kunnen strings zijn die lijsten representeren)
+        try:
+            if isinstance(station_names, str):
+                # Probeer als Python lijst te parsen
+                try:
+                    station_names = ast.literal_eval(station_names)
+                except (ValueError, SyntaxError):
+                    # Als dat niet lukt, split op komma's
+                    station_names = [name.strip() for name in station_names.split(',')]
+            
+            if isinstance(station_codes, str):
+                # Probeer als Python lijst te parsen
+                try:
+                    station_codes = ast.literal_eval(station_codes)
+                except (ValueError, SyntaxError):
+                    # Als dat niet lukt, split op komma's
+                    station_codes = [code.strip() for code in station_codes.split(',')]
+            
+            # Zorg ervoor dat beide lijsten zijn
+            if not isinstance(station_names, list):
+                station_names = [station_names]
+            if not isinstance(station_codes, list):
+                station_codes = [station_codes]
+            
+            # Combineer namen en codes (gebruik de kortste lijst als lengte)
+            min_length = min(len(station_names), len(station_codes))
+            
+            for i in range(min_length):
+                name = str(station_names[i]).strip()
+                code = str(station_codes[i]).strip()
+                
+                # Skip lege waarden
+                if name and code:
+                    stations.append({
+                        'station_name': name,
+                        'station_code': code
+                    })
+                    
+        except Exception as e:
+            logger.warning(f"Fout bij parsen van station data in rij: {e}")
+            continue
+    
+    # Verwijder duplicaten
+    unique_stations = []
+    seen_codes = set()
+    
+    for station in stations:
+        if station['station_code'] not in seen_codes:
+            unique_stations.append(station)
+            seen_codes.add(station['station_code'])
+    
+    logger.info(f"Uitgepakt {len(unique_stations)} unieke stations uit rdt kolommen")
+    return unique_stations
 
 
 def _create_fallback_station_data() -> List[Dict[str, Any]]:
