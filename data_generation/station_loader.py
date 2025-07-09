@@ -294,4 +294,4 @@ def validate_station_data(station_data: List[Dict[str, Any]]) -> None:
     # Log statistieken
     logger.debug(f"Station codes: {sorted(list(station_codes))}")
     logger.debug(f"Langste station naam: {max(station['station_name'] for station in station_data)}")
-    logger.debug(f"Kortste station code: {min(station['station_code'] for station in station_data, key=len)}")
+    logger.debug(f"Kortste station code: {min(station['station_code'] for station in station_data)}")
