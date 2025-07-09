@@ -1,0 +1,25 @@
+Repository Summary - SyntheticRailwayData
+
+Overzicht van bestanden:
+
+Hoofdmap (/):
+- start.txt (1.2KB) - Projectbeschrijving met doel, doelgroep en functionaliteit
+- project_info.txt (1.5KB) - Gedetailleerde projectinformatie en modulestructuur  
+- project_stappen.txt (2.1KB) - Ontwikkelstappen en implementatieplan
+- repository_summary.txt (dit bestand) - Overzicht van repository structuur
+
+Te implementeren bestanden:
+- main.py - Hoofdscript voor het genereren van synthetische wisselonderhoudsdata
+- constants.py - Configuratieparameters en constanten voor datageneratie
+- all_disruptions.csv - Input bestand met Nederlandse stationscodes en namen
+- README.md - Gebruikersdocumentatie (nice-to-have)
+
+Projectstructuur en architectuur:
+Dit project genereert synthetische data voor wisselonderhoud in het Nederlandse spoorwegnetwerk. De architectuur is eenvoudig gehouden met een main script dat configuratie uit constants.py haalt en stationsinformatie uit all_disruptions.csv leest.
+
+Belangrijkste modules en relaties:
+1. constants.py → main.py (configuratie)
+2. all_disruptions.csv → main.py (stationsdata)
+3. main.py → output CSV (gegenereerde data)
+
+Het systeem moet consistentie waarborgen voor wissel eigenschappen per switch_id en realistische verbanden creëren tussen onderhoud en storingsgevoeligheid van stations.
